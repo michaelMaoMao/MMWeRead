@@ -7,8 +7,8 @@
 //
 
 #import "DiscoverCollectionCell.h"
-#import "RecommendRankCollectionCell.h"
-
+#import "BookRankCollectionCell.h"
+#define itemHeight (270/2 + (iPhone6||iPhone6P?40:0))
 @interface DiscoverCollectionCell () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>{
     UIView *backView;
     //发现
@@ -67,12 +67,13 @@
         flowLayout.minimumLineSpacing = 15/2;
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 20, 0, 0);
-        flowLayout.itemSize = CGSizeMake(130/2, 270/2);
+        CGFloat itemWith = (self.width - 30*2)/3;
+        flowLayout.itemSize = CGSizeMake(itemWith, itemHeight);
         
         bookCollectView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         bookCollectView.delegate = self;
         bookCollectView.dataSource = self;
-        [bookCollectView registerClass:[RecommendRankCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([RecommendRankCollectionCell class])];
+        [bookCollectView registerClass:[BookRankCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([BookRankCollectionCell class])];
         bookCollectView.showsHorizontalScrollIndicator = false;
         bookCollectView.showsVerticalScrollIndicator = false;
         bookCollectView.backgroundColor = [UIColor clearColor];
@@ -106,14 +107,14 @@
     bookCoverView.layer.shadowOpacity = 0.1;
     bookCoverView.layer.shadowOffset = CGSizeMake(1, 1);
 
-    bookNameLabel.frame = CGRectMake(0, bookCoverView.bottom + 10, self.width, 15);
-    authorNameLabel.frame = CGRectMake(0, bookNameLabel.bottom + 5, self.width, 15);
-    bookCollectView.frame = CGRectMake(0, authorNameLabel.bottom + 30, self.width, 260/2);
-    recommendTitleLabel.frame = CGRectMake(0, bookCollectView.bottom + 15, self.width, 15);
+    bookNameLabel.frame = CGRectMake(0, bookCoverView.bottom + (iPhone6||iPhone6P?20:10), self.width, 15);
+    authorNameLabel.frame = CGRectMake(0, bookNameLabel.bottom + (iPhone6||iPhone6P?10:5), self.width, 15);
+    bookCollectView.frame = CGRectMake(0, authorNameLabel.bottom + (iPhone6||iPhone6P?30:20), self.width, itemHeight);
+    recommendTitleLabel.frame = CGRectMake(0, bookCollectView.bottom + (iPhone6||iPhone6P?25:10), self.width, 15);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    RecommendRankCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([RecommendRankCollectionCell class])  forIndexPath:indexPath];
+    BookRankCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BookRankCollectionCell class])  forIndexPath:indexPath];
     return cell;
 }
 

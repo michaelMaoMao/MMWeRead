@@ -69,7 +69,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>{
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat cellHeight = mCollectionView.height - 10*2;
+    CGFloat cellHeight = mCollectionView.height - 15*2;
     return CGSizeMake(mCollectionView.width - (flowLayout.sectionInset.left + flowLayout.minimumLineSpacing)*2, cellHeight);
 }
 

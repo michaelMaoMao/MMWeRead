@@ -8,6 +8,7 @@
 
 #import "ReviewViewController.h"
 #import "ReviewListViewController.h"
+#import "FollowedPersonController.h"
 
 @interface ReviewViewController () <UIScrollViewDelegate>{
     UIButton *followBtn;
@@ -16,6 +17,7 @@
 
 @property (nonatomic, strong) UIScrollView *mScrollView;
 @property (nonatomic, strong) ReviewListViewController *ideaListVC;
+@property (nonatomic, strong) FollowedPersonController *followedPersonVC;
 
 @end
 
@@ -83,6 +85,11 @@
     _ideaListVC.view.frame = CGRectMake(self.view.width, 0, self.view.width, _mScrollView.height);
     [_mScrollView addSubview:_ideaListVC.view];
     [self addChildViewController:_ideaListVC];
+    
+    _followedPersonVC = [[FollowedPersonController alloc] init];
+    _followedPersonVC.view.frame = CGRectMake(0, 0, self.view.width, _mScrollView.height);
+    [_mScrollView addSubview:_followedPersonVC.view];
+    [self addChildViewController:_followedPersonVC];
 }
 
 

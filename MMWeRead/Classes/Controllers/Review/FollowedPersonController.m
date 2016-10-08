@@ -1,25 +1,26 @@
 //
-//  IdeaListViewController.m
-//  微信读书
+//  FollowedPersonViewController.m
+//  MMWeRead
 //
-//  Created by MichaelMao on 16/10/4.
+//  Created by MichaelMao on 16/10/7.
 //  Copyright © 2016年 MichaelMao. All rights reserved.
 //
 
-#import "ReviewListViewController.h"
+#import "FollowedPersonController.h"
 #import "ReviewTableViewCell.h"
 #import "Review.h"
 #import "Comment.h"
 #import "CommentTableViewCell.h"
 
-@interface ReviewListViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface FollowedPersonController ()  <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSMutableArray *reviewList;
+@property (nonatomic, strong) NSMutableArray *followedList;
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation ReviewListViewController
+@implementation FollowedPersonController
+
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -39,7 +40,7 @@
 }
 
 - (void)setupUI{
-
+    
     _tableView = [[UITableView alloc] init];
     _tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
     _tableView.delegate = self;
@@ -52,8 +53,8 @@
 
 
 - (void)createDataSource{
-    if (!_reviewList) {
-        _reviewList = [NSMutableArray array];
+    if (!_followedList) {
+        _followedList = [NSMutableArray array];
     }
     NSArray *userNames = @[@"Gup Lei", @"我是渣渣", @"Miao🐱", @"花开半夏🌹清水如月"];
     NSArray *userRates = @[@"4", @"5", @"3", @"5"];
@@ -79,9 +80,9 @@
     comment1.commentsText = @"只有我自己常常在人群里，深感孤独，常在人堆里，赫然一笑。。。却，原来，大家都有这样的如此的人生";
     Comment *comment2 = [[Comment alloc] init];
     comment2.userName = @"【瑾】";
-    comment2.commentsText = @"我们都一样，在不同的地方，却有同样的心情,我们都一样，在不同的地方，却有同样的心情";
+    comment2.commentsText = @"我们都一样，在不同的地方，却有同样的心情,我们都一样，在不同的心情";
     NSArray *reviewComments = @[comment1, comment2];
-    NSArray *comments = @[reviewComments, @[], reviewComments, @[]];
+    NSArray *comments = @[reviewComments, @[], @[], @[]];
     
     for (int i = 0; i < [userNames count]; i++) {
         Review *review = [[Review alloc] init];
@@ -98,7 +99,8 @@
         review.comments = comments[i];
         review.hasComments = ([comments[i] count] > 0);
         review.hideForward = true;
-        [_reviewList addObject:review];
+        review.showCommentFooter = ([review.comments count] >= 2);
+        [_followedList addObject:review];
     }
     [self.tableView reloadData];
 }
@@ -106,28 +108,28 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_reviewList count];
+    return [_followedList count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat userProfileHeight = 55;
     CGFloat bookContentHeight = 130/2;
     CGFloat footerHeight = 25;
-    Review *review = _reviewList[indexPath.row];
+    Review *review = _followedList[indexPath.row];
     CGFloat praiseHeight = (review.hasPraise?(85/2):0);
     CGFloat commentsHeight = 0;
     for (Comment *comment in review.comments) {
         CGRect commentRect = [comment.commentsText boundingRectWithSize:CGSizeMake(tableView.width - contentLeftInset - contentRightInset, CGFLOAT_MAX)
-                                                                options:(NSStringDrawingUsesLineFragmentOrigin)
-                                                             attributes:@{NSFontAttributeName:WR_CommentTextLabel_Font}
-                                                                context:nil];
+                                                      options:(NSStringDrawingUsesLineFragmentOrigin)
+                                                   attributes:@{NSFontAttributeName:WR_CommentTextLabel_Font}
+                                                      context:nil];
         commentsHeight += commentRect.size.height + 10;
     }
     commentsHeight += review.hasComments?commentTableInsetTop:0;
     commentsHeight += review.showCommentFooter?commentTableFooterHeight:0;
-    
+
     CGFloat replyFooterHeight = ((review.hasPraise || review.hasComments)?20:0);
-    
+
     NSString *reviewText = review.userReview;
     CGRect contentRect = [reviewText boundingRectWithSize:CGSizeMake(tableView.width - contentLeftInset - contentRightInset, CGFLOAT_MAX)
                                                   options:(NSStringDrawingUsesLineFragmentOrigin)
@@ -147,11 +149,10 @@
     return cellHeight;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ReviewTableViewCell class])];
     cell.backgroundColor = [UIColor clearColor];
-    cell.review = _reviewList[indexPath.row];
+    cell.review = _followedList[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
