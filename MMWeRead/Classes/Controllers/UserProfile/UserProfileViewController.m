@@ -8,6 +8,7 @@
 
 #import "UserProfileViewController.h"
 #import "UserProfileTableViewCell.h"
+#import "UserProfileDetailController.h"
 
 @interface UserProfileViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -20,6 +21,11 @@
 
 @implementation UserProfileViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.tintColor = nil;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName :[UIColor blackColor]};
+}
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -83,10 +89,10 @@
 
 - (UIView *)tableHeaderView{
 
-    UIView *tableHeaderView = [[UIView alloc] init];
+    UIButton *tableHeaderView = [[UIButton alloc] init];
     tableHeaderView.frame = CGRectMake(0, 0, _tableView.width, 150);
     tableHeaderView.backgroundColor = [UIColor whiteColor];
-    
+    [tableHeaderView addTarget:self action:@selector(pushToUserProfileDetail) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *avatarImageView = [[UIImageView alloc] init];
     avatarImageView.frame = CGRectMake(_tableView.width/2 - 80/2, 15, 80, 80);
     avatarImageView.image = [UIImage imageNamed:@"avatar_default"];
@@ -98,7 +104,7 @@
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.frame = CGRectMake(0, avatarImageView.bottom + 15, _tableView.width, 15);
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = HEXCOLOR(0x858585);
+    titleLabel.textColor = color_grayline;
     titleLabel.font = [UIFont systemFontOfSize:14.0];
     titleLabel.text = @"编辑个人资料";
     [tableHeaderView addSubview:titleLabel];
@@ -107,6 +113,13 @@
     line.frame = CGRectMake(0, tableHeaderView.height - 0.5, tableHeaderView.width, 0.5);
     line.backgroundColor = [UIColor lightGrayColor];
     [tableHeaderView addSubview:line];
+    
+    UIImageView *indicatorImageView = [[UIImageView alloc] init];
+    indicatorImageView.image = [UIImage imageNamed:@"icon_disclosureIndicator"];
+    indicatorImageView.size = indicatorImageView.image.size;
+    indicatorImageView.centerY = avatarImageView.centerY;
+    indicatorImageView.right = tableHeaderView.width - 22;
+    [tableHeaderView addSubview:indicatorImageView];
     
     return tableHeaderView;
 }
@@ -126,6 +139,10 @@
                     ];
 }
 
+- (void)pushToUserProfileDetail{
+    UserProfileDetailController *viewController = [[UserProfileDetailController alloc] init];
+    [self.navigationController pushViewController:viewController animated:true];
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -164,10 +181,10 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    CGFloat contentOffSetY = self.tableView.contentOffset.y;
+    CGFloat contentOffsetY = self.tableView.contentOffset.y;
     CGFloat startAlphaOffset = - NAVBAR_HEIGHT;
     CGFloat AlphaRange = NAVBAR_HEIGHT;
-    CGFloat alpha =  (contentOffSetY - startAlphaOffset)/ AlphaRange;
+    CGFloat alpha =  (contentOffsetY - startAlphaOffset)/ AlphaRange;
     if (alpha < 0) {
         alpha = 0;
     }
@@ -176,7 +193,7 @@
     _naviLineView.alpha = alpha;
 
     CGFloat headerBackHeight = _tableView.tableHeaderView.height + self.navigationController.navigationBar.bottom;
-    _headerbackView.height = headerBackHeight - contentOffSetY - NAVBAR_HEIGHT;
+    _headerbackView.height = headerBackHeight - contentOffsetY - NAVBAR_HEIGHT;
 }
 
 

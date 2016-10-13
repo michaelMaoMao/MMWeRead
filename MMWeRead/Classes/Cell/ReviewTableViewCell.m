@@ -242,10 +242,6 @@
     
 //    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:_review.userAvatar]];
 //    _avatar.image = [UIImage imageWithData:data];
-    NSString *commentTitle = @"点评此书";
-    NSMutableAttributedString *userTitle = [[NSMutableAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%@ %@", _review.userName, commentTitle]];
-    [userTitle addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(_review.userName.length + 1, commentTitle.length)];
-    _userNameLabel.attributedText = userTitle;
     NSInteger number = [_review.userRate integerValue];
     [_stars enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx < number) {
@@ -253,7 +249,12 @@
         }else{
             obj.image = [UIImage imageNamed:@"icon_nav_favorite"];
         }
+        obj.hidden = !_review.isUserComment;
     }];
+    NSString *commentTitle = _review.isUserComment?@"点评此书":@"";
+    NSMutableAttributedString *userTitle = [[NSMutableAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%@ %@", _review.userName, commentTitle]];
+    [userTitle addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(_review.userName.length + 1, commentTitle.length)];
+    _userNameLabel.attributedText = userTitle;
     _forwardBtn.hidden = _review.hideForward;
     _reViewLabel.text = _review.userReview;
     _bookTitleLabel.text = _review.bookTitleName;

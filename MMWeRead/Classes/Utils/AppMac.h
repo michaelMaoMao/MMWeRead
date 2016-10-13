@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Neo Yang. All rights reserved.
 //
 
-#define HEXCOLOR(c)                         [UIColor colorWithRed:((c>>16)&0xFF)/255.0 green:((c>>8)&0xFF)/255.0 blue:(c&0xFF)/255.0 alpha:1.0];
+#define HEXCOLOR(c)                         [UIColor colorWithRed:((c>>16)&0xFF)/255.0 green:((c>>8)&0xFF)/255.0 blue:(c&0xFF)/255.0 alpha:1.0]
 #define F(string, args...)                  [NSString stringWithFormat:string, args]
 #define Font(CGFloat)                       [UIFont systemFontOfSize:(CGFloat)]
 #define NSNumberWithBool(b)                 [NSNumber numberWithBool:b]

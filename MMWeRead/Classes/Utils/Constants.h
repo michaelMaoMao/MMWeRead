@@ -9,42 +9,11 @@
 #ifndef ___Constants_h
 #define ___Constants_h
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-static NSString *const kOrderStatusDidChangeNotification = @"kOrderStatusDidChangeNotification";
-
-static NSString *const kCartGoodsCountDidChangeNotification = @"kCartGoodsCountDidChangeNotification";
-
-static NSString *const kGoodsStatusDidChangeNotification = @"kGoodsStatusDidChangeNotification";
-static NSString *const kCollectStatusOnChangedNotification = @"kCollectStatusOnChangedNotification";
-static NSString *const kGoodsCollectStatusOnChangedNotification = @"kGoodsCollectStatusOnChangedNotification";
-
-static NSString *const kHomeRefreshTopbarNotification = @"kHomeRefreshTopbarNotification";
-static NSString *const kHomeRefreshNotification = @"kHomeRefreshNotification";
-static NSString *const kShoppingCartRefreshNotification = @"kShoppingCartRefreshNotification";
-
-static NSString *const kSettingNotifyStatusRefreshNotification = @"kSettingNotifyStatusRefreshNotification";
-
-static NSString *const kLivePlayerLoadData = @"kLivePlayerLoadData";
-
-static NSString *const kCollectLaterSaleMessage = @"收藏成功，开抢前5分钟将会有推送提醒~";
-static NSString *const kGoodsHaveChanceMessage = @"该商品有人未付款，你还有机会！试着下拉刷新看看吧~";
-
 static const CGFloat SDWebImageFadeDuration = 0.6;
-static const int maxMemberLevel = 7; //最高的会员等级
-static const int kMemberLevelFreePost = 4; //会员等级大于等于4免邮费
-static const int vipServiceLevel = 3; //vip客服会员等级
-static const int E_PAGE_SIZE = 20; //每页条数
-static const CGFloat kBottomBarHeight = 47.0; //底部工具栏高度
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #define ALERT_TAG_ADDRESS    3010
-#define ALERT_TAG_CONFIRM    3011
-#define ALERT_TAG_COPY       3012
-#define ALERT_TAG_APPSTORE   3021
-#define ALERT_TAG_APPSTORE1  3022
-#define ALERT_TAG_APPSTORE2  3023
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +34,9 @@ static const CGFloat kBottomBarHeight = 47.0; //底部工具栏高度
 #define color_address            [UIColor colorWithHex:0x5e6b85] //地址颜色
 #define color_banner             [UIColor colorWithHex:0xf5f5f5] //默认图片背景色
 #define color_indicator          [UIColor colorWithHex:0x92969c] //菊花颜色
+#define color_grayline           [UIColor colorWithHex:0x858585] //灰线颜色
+#define color_naviTitle          [UIColor colorWithRed:27/255.f green:136/255.f blue:238/255.f alpha:1.f]
+#define color_naviTitle_alpha(alpha)     [UIColor colorWithRed:27/255.f green:136/255.f blue:238/255.f alpha:alpha]
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

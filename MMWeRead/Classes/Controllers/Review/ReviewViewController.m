@@ -33,7 +33,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     CGFloat naviHeight = self.navigationController.navigationBar.height;
     CGFloat scrollViewHeight = self.view.height - NAVBAR_HEIGHT - self.tabBarController.tabBar.height;
-    UIColor *highLightColor = RGB(27, 136, 238);
     
     UIBarButtonItem *writeItem = [[UIBarButtonItem alloc] init];
     writeItem.image = [UIImage imageNamed:@"icon_profile_review"];
@@ -52,8 +51,8 @@
     [followBtn setBackgroundColor:[UIColor clearColor]];
     [followBtn setTitle:@"关注的人" forState:UIControlStateNormal];
     [followBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [followBtn setTitleColor:highLightColor forState:UIControlStateHighlighted];
-    [followBtn setTitleColor:highLightColor forState:UIControlStateSelected];
+    [followBtn setTitleColor:color_naviTitle forState:UIControlStateHighlighted];
+    [followBtn setTitleColor:color_naviTitle forState:UIControlStateSelected];
     [followBtn addTarget:self action:@selector(didSelelectTabBarItem:) forControlEvents:(UIControlEventTouchUpInside)];
     [tabbar addSubview:followBtn];
     
@@ -62,8 +61,8 @@
     [ideaBtn setBackgroundColor:[UIColor clearColor]];
     [ideaBtn setTitle:@"精选想法" forState:UIControlStateNormal];
     [ideaBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [ideaBtn setTitleColor:highLightColor forState:UIControlStateHighlighted];
-    [ideaBtn setTitleColor:highLightColor forState:UIControlStateSelected];
+    [ideaBtn setTitleColor:color_naviTitle forState:UIControlStateHighlighted];
+    [ideaBtn setTitleColor:color_naviTitle forState:UIControlStateSelected];
     [ideaBtn addTarget:self action:@selector(didSelelectTabBarItem:) forControlEvents:(UIControlEventTouchUpInside)];
     [tabbar addSubview:ideaBtn];
     

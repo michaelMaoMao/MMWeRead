@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *userName;
 @property (nonatomic, copy) NSString *userRate;
 @property (nonatomic, copy) NSString *userReview;
+@property (nonatomic, assign) BOOL isUserComment;//用户是否点评
 
 //book
 @property (nonatomic, copy) NSString *bookCover;

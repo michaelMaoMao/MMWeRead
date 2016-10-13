@@ -1,15 +1,16 @@
 //
-//  BookshelfViewController.m
+//  BookShelfViewController.m
 //  微信读书
 //
 //  Created by MichaelMao on 16/10/1.
 //  Copyright © 2016年 MichaelMao. All rights reserved.
 //
 
-#import "BookshelfViewController.h"
+#import "BookShelfViewController.h"
 #import "BookShelfCollectionViewCell.h"
+#import "BookMarketViewController.h"
 
-@interface BookshelfViewController () <UICollectionViewDelegate,
+@interface BookShelfViewController () <UICollectionViewDelegate,
 UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
 
     UICollectionView *mCollection;
@@ -20,7 +21,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
 
 @end
 
-@implementation BookshelfViewController
+@implementation BookShelfViewController
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -51,6 +52,9 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
     editItem.title = @"编辑";
     UIBarButtonItem *bookShopItem = [[UIBarButtonItem alloc] init];
     bookShopItem.title = @"书城";
+    bookShopItem.target = self;
+    bookShopItem.action = @selector(showBookMarket);
+    
     self.navigationItem.leftBarButtonItem = editItem;
     self.navigationItem.rightBarButtonItem = bookShopItem;
     
@@ -94,14 +98,14 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    CGFloat contentOffSetY = mCollection.contentOffset.y;
+    CGFloat contentOffsetY = mCollection.contentOffset.y;
     CGFloat startAlphaOffset = - mCollection.contentInset.top;
     CGFloat AlphaRange = flowLayout.minimumLineSpacing;
-    CGFloat alpha =  (contentOffSetY - startAlphaOffset)/ AlphaRange;
+    CGFloat alpha =  (contentOffsetY - startAlphaOffset)/ AlphaRange;
     
     UIImage *image = [UIImage imageWithColor:[UIColor colorWithWhite:1 alpha:alpha]];
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    _naviLineView.alpha = (contentOffSetY - startAlphaOffset)/ AlphaRange;
+    _naviLineView.alpha = (contentOffsetY - startAlphaOffset)/ AlphaRange;
 }
 
 // 设定页脚的尺寸
@@ -118,7 +122,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
         UILabel *footerLabel = [[UILabel alloc] init];
         footerLabel.frame = CGRectMake(0, 10, 340/2, 20);
         footerLabel.centerX = sectionFooterView.centerX;
-        footerLabel.textColor = HEXCOLOR(0x858585);
+        footerLabel.textColor = color_grayline;
         footerLabel.font = [UIFont systemFontOfSize:12.0];
         footerLabel.text = @"4本公开阅读·1本私密阅读";
         footerLabel.backgroundColor = [UIColor whiteColor];
@@ -127,7 +131,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
 
         UIView *line = [[UIView alloc] init];
         line.frame = CGRectMake(25, footerLabel.centerY - 0.5/2, sectionFooterView.width - 50, 0.5);
-        line.backgroundColor = HEXCOLOR(0x858585);
+        line.backgroundColor = color_grayline;
         [sectionFooterView insertSubview:line atIndex:0];
         return sectionFooterView;
     }
@@ -135,6 +139,14 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
 }
 
 
+#pragma mark - Action
+
+- (void)showBookMarket{
+    BookMarketViewController *viewController = [[BookMarketViewController alloc] init];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navi.navigationBar.translucent = false;
+    [self.navigationController presentViewController:navi animated:true completion:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

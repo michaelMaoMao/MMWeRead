@@ -1,4 +1,4 @@
-//
+
 //  RecommendRankCollectionCell.m
 //  微信读书
 //
@@ -7,12 +7,10 @@
 //
 
 #import "BookRankCollectionCell.h"
-#define itemHeight (190/2 + (iPhone6||iPhone6P?40:0))
+#define  coverHeight  (190/2 + (iPhone6||iPhone6P?40:0))
 
-@interface BookRankCollectionCell (){
-    UIImageView *bookCover;
-    UILabel *bookTitle;
-}
+@interface BookRankCollectionCell ()
+
 @end
 
 @implementation BookRankCollectionCell
@@ -44,7 +42,7 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    bookCover.frame = CGRectMake(0, 0, self.width, itemHeight);
+    bookCover.frame = CGRectMake(0, 0, self.width, coverHeight);
     bookTitle.frame = CGRectMake(0, bookCover.bottom, self.width, 50);
 }
 

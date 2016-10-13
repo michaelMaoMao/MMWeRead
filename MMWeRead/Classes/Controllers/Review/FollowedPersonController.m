@@ -90,6 +90,7 @@
         review.userAvatar = userAvatars[i];
         review.userRate = userRates[i];
         review.userReview = userReviews[i];
+        review.isUserComment = false;
         review.bookCover = bookCovers[i];
         review.bookTitleName = bookTitleNames[i];
         review.bookAuthorName = bookAuthorNames[i];

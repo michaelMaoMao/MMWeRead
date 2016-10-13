@@ -8,16 +8,16 @@
 
 #import "TabBarController.h"
 #import "DiscoverViewController.h"
-#import "BookshelfViewController.h"
+#import "BookShelfViewController.h"
 #import "ReviewViewController.h"
 #import "UserProfileViewController.h"
 
 @interface TabBarController ()
 
 @property (nonatomic, strong) DiscoverViewController *discoverVC;
-@property (nonatomic, strong) BookshelfViewController *bookshelfVC;
+@property (nonatomic, strong) BookShelfViewController *bookShelfVC;
 @property (nonatomic, strong) ReviewViewController *ideaVC;
-@property (nonatomic, strong) UserProfileViewController *aboutMeVC;
+@property (nonatomic, strong) UserProfileViewController *userProfileVC;
 
 @end
 
@@ -38,25 +38,25 @@
         _discoverVC.tabBarItem.title = @"发现";
         _discoverVC.tabBarItem.image = [UIImage imageNamed:@"icon_tabbar_discover"];
     }
-    if (!_bookshelfVC) {
-        _bookshelfVC = [[BookshelfViewController alloc] init];
-        _bookshelfVC.tabBarItem.title = @"书架";
-        _bookshelfVC.tabBarItem.image = [UIImage imageNamed:@"icon_tabbar_bookshelf"];
+    if (!_bookShelfVC) {
+        _bookShelfVC = [[BookShelfViewController alloc] init];
+        _bookShelfVC.tabBarItem.title = @"书架";
+        _bookShelfVC.tabBarItem.image = [UIImage imageNamed:@"icon_tabbar_bookshelf"];
     }
     if (!_ideaVC) {
         _ideaVC = [[ReviewViewController alloc] init];
         _ideaVC.tabBarItem.title = @"想法";
         _ideaVC.tabBarItem.image = [UIImage imageNamed:@"icon_tabbar_review"];
     }
-    if (!_aboutMeVC) {
-        _aboutMeVC = [[UserProfileViewController alloc] init];
-        _aboutMeVC.tabBarItem.title = @"我";
-        _aboutMeVC.tabBarItem.image = [UIImage imageNamed:@"icon_tabbar_profile"];
+    if (!_userProfileVC) {
+        _userProfileVC = [[UserProfileViewController alloc] init];
+        _userProfileVC.tabBarItem.title = @"我";
+        _userProfileVC.tabBarItem.image = [UIImage imageNamed:@"icon_tabbar_profile"];
     }
     UINavigationController *naviC1 = [[UINavigationController alloc] initWithRootViewController:_discoverVC];
-    UINavigationController *naviC2 = [[UINavigationController alloc] initWithRootViewController:_bookshelfVC];
+    UINavigationController *naviC2 = [[UINavigationController alloc] initWithRootViewController:_bookShelfVC];
     UINavigationController *naviC3 = [[UINavigationController alloc] initWithRootViewController:_ideaVC];
-    UINavigationController *naviC4 = [[UINavigationController alloc] initWithRootViewController:_aboutMeVC];
+    UINavigationController *naviC4 = [[UINavigationController alloc] initWithRootViewController:_userProfileVC];
     naviC1.navigationBar.translucent = true;
     naviC3.navigationBar.translucent = true;
     

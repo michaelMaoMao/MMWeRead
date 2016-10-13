@@ -79,7 +79,7 @@
     comment1.commentsText = @"只有我自己常常在人群里，深感孤独，常在人堆里，赫然一笑。。。却，原来，大家都有这样的如此的人生";
     Comment *comment2 = [[Comment alloc] init];
     comment2.userName = @"【瑾】";
-    comment2.commentsText = @"我们都一样，在不同的地方，却有同样的心情,我们都一样，在不同的地方，却有同样的心情";
+    comment2.commentsText = @"我们都一样，在不同的地方，却有同样的心情,却有同样的心情";
     NSArray *reviewComments = @[comment1, comment2];
     NSArray *comments = @[reviewComments, @[], reviewComments, @[]];
     
@@ -89,6 +89,7 @@
         review.userAvatar = userAvatars[i];
         review.userRate = userRates[i];
         review.userReview = userReviews[i];
+        review.isUserComment = true;
         review.bookCover = bookCovers[i];
         review.bookTitleName = bookTitleNames[i];
         review.bookAuthorName = bookAuthorNames[i];
@@ -98,6 +99,7 @@
         review.comments = comments[i];
         review.hasComments = ([comments[i] count] > 0);
         review.hideForward = true;
+        review.showCommentFooter = ([review.comments count] >= 2);
         [_reviewList addObject:review];
     }
     [self.tableView reloadData];

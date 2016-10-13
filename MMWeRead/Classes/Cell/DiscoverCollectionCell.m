@@ -8,7 +8,7 @@
 
 #import "DiscoverCollectionCell.h"
 #import "BookRankCollectionCell.h"
-#define itemHeight (270/2 + (iPhone6||iPhone6P?40:0))
+
 @interface DiscoverCollectionCell () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>{
     UIView *backView;
     //发现
@@ -67,8 +67,8 @@
         flowLayout.minimumLineSpacing = 15/2;
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 20, 0, 0);
-        CGFloat itemWith = (self.width - 30*2)/3;
-        flowLayout.itemSize = CGSizeMake(itemWith, itemHeight);
+        CGFloat itemWith = (self.width - 55)/3;
+        flowLayout.itemSize = CGSizeMake(itemWith, bookRankItemHeight);
         
         bookCollectView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         bookCollectView.delegate = self;
@@ -81,7 +81,7 @@
         
         recommendTitleLabel = [[UILabel alloc] init];
         recommendTitleLabel.textAlignment = NSTextAlignmentCenter;
-        recommendTitleLabel.textColor = HEXCOLOR(0x858585);
+        recommendTitleLabel.textColor = color_grayline;
         recommendTitleLabel.font = [UIFont systemFontOfSize:12.0];
         recommendTitleLabel.text = @"查看本周热榜 >";
         recommendTitleLabel.backgroundColor = [UIColor clearColor];
@@ -109,7 +109,7 @@
 
     bookNameLabel.frame = CGRectMake(0, bookCoverView.bottom + (iPhone6||iPhone6P?20:10), self.width, 15);
     authorNameLabel.frame = CGRectMake(0, bookNameLabel.bottom + (iPhone6||iPhone6P?10:5), self.width, 15);
-    bookCollectView.frame = CGRectMake(0, authorNameLabel.bottom + (iPhone6||iPhone6P?30:20), self.width, itemHeight);
+    bookCollectView.frame = CGRectMake(0, authorNameLabel.bottom + (iPhone6||iPhone6P?30:20), self.width, bookRankItemHeight);
     recommendTitleLabel.frame = CGRectMake(0, bookCollectView.bottom + (iPhone6||iPhone6P?25:10), self.width, 15);
 }
 

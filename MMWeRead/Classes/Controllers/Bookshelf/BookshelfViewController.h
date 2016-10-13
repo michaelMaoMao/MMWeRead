@@ -1,5 +1,5 @@
 //
-//  BookshelfViewController.h
+//  BookShelfViewController.h
 //  微信读书
 //
 //  Created by MichaelMao on 16/10/1.
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface BookshelfViewController : BaseViewController
+@interface BookShelfViewController : BaseViewController
 
 @end

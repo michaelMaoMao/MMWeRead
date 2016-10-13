@@ -39,7 +39,7 @@
         [self.contentView addSubview:detailTitleLabel];
         
         subDetailTitleLabel = [[UILabel alloc] init];
-        subDetailTitleLabel.textColor = HEXCOLOR(0x858585);
+        subDetailTitleLabel.textColor = color_grayline;
         subDetailTitleLabel.font = [UIFont systemFontOfSize:12.0];
         subDetailTitleLabel.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:subDetailTitleLabel];
