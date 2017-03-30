@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>MMWitget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>ED1CCCAA1E8C8A7E00401668</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>ED61B3561DA4CF52000C92E3</key>
 		<dict>
 			<key>primary</key>
